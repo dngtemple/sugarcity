@@ -6,9 +6,10 @@ import { cn, keepOpenForToasts } from '../../lib/utils';
 export type OverlayKind = 'center' | 'right' | 'full';
 
 const PANEL: Record<OverlayKind, string> = {
-  // Bottom sheet on phones, a floating card from 640px up.
+  // Bottom sheet on phones, a floating card from 640px up. Centred with
+  // inset-0 + m-auto (not translate) so the zoom animation's transform can't undo it.
   center:
-    'inset-x-0 bottom-0 max-h-[92dvh] rounded-t-2xl animate-rise sm:inset-auto sm:left-1/2 sm:top-1/2 sm:max-h-[86dvh] sm:w-[min(520px,calc(100vw-32px))] sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-xl sm:animate-zoom',
+    'inset-x-0 bottom-0 max-h-[92dvh] rounded-t-2xl animate-rise sm:inset-0 sm:m-auto sm:h-fit sm:max-h-[86dvh] sm:w-[min(520px,calc(100vw-32px))] sm:rounded-xl sm:animate-zoom',
   right: 'inset-0 animate-fade sm:inset-y-0 sm:left-auto sm:right-0 sm:w-[min(520px,100vw)] sm:rounded-l-xl sm:animate-drawer-in',
   full: 'inset-0 animate-fade',
 };

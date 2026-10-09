@@ -31,7 +31,7 @@ export function Confirm({
       <AlertDialog.Portal>
         <AlertDialog.Overlay className="fixed inset-0 z-[70] bg-plum-900/50 animate-fade" />
         <AlertDialog.Content
-          className="fixed left-1/2 top-1/2 z-[70] w-[min(440px,calc(100vw-32px))] -translate-x-1/2 -translate-y-1/2 rounded-xl bg-card p-6 shadow-lift animate-zoom focus:outline-none"
+          className="fixed inset-0 z-[70] m-auto h-fit w-[min(440px,calc(100vw-32px))] rounded-xl bg-card p-6 shadow-lift animate-zoom focus:outline-none"
           onEscapeKeyDown={(e) => loading && e.preventDefault()}
         >
           <div className="flex gap-4">
