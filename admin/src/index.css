@@ -1,0 +1,127 @@
+/* Sugar City design tokens — paste at the top of client/src/index.css and admin/src/index.css (keep identical). */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* surfaces — warm vanilla cream, not grey */
+    --sc-cream: 252 247 241;       /* #FCF7F1 page */
+    --sc-cream-deep: 246 236 224;  /* #F6ECE0 muted panels */
+    --sc-card: 255 255 255;
+    /* text — deep chocolate-plum */
+    --sc-cocoa: 43 14 37;          /* #2B0E25 */
+    --sc-cocoa-soft: 104 76 96;    /* #684C60 */
+    --sc-cocoa-faint: 150 126 142; /* #967E8E */
+    /* lines */
+    --sc-crumb: 236 224 214;       /* #ECE0D6 */
+    --sc-crumb-strong: 219 201 188;
+    /* brand — plum from the logo */
+    --sc-plum-50: 249 240 246;
+    --sc-plum-100: 240 222 235;
+    --sc-plum-200: 222 188 212;
+    --sc-plum: 94 14 78;           /* #5E0E4E */
+    --sc-plum-700: 74 9 61;
+    --sc-plum-900: 46 5 38;
+    /* accent — the cherry on top */
+    --sc-cherry-50: 253 237 239;
+    --sc-cherry: 214 47 69;        /* #D62F45 */
+    --sc-cherry-700: 178 30 52;
+    /* accent — frosting peach */
+    --sc-peach-50: 254 244 236;
+    --sc-peach: 247 203 168;       /* #F7CBA8 */
+    --sc-peach-700: 168 92 42;
+    /* status */
+    --sc-mint-50: 236 250 245;
+    --sc-mint: 13 128 98;          /* success */
+    --sc-mint-700: 6 95 72;
+    --sc-honey-50: 255 248 230;
+    --sc-honey-200: 250 222 150;
+    --sc-honey-700: 140 82 10;     /* warning ink */
+    --sc-berry-50: 255 239 241;
+    --sc-berry: 200 30 58;         /* danger */
+    --sc-berry-700: 150 18 42;
+    --sc-sky-50: 238 243 255;
+    --sc-sky-700: 45 64 160;       /* info ink */
+    color-scheme: light;
+  }
+
+  html { -webkit-tap-highlight-color: transparent; }
+  body {
+    @apply bg-cream font-sans text-cocoa antialiased;
+    font-feature-settings: 'ss01';
+  }
+  h1, h2, h3, .font-display {
+    font-variation-settings: 'SOFT' 100, 'WONK' 0;
+  }
+  input, select, textarea { font-size: 16px; } /* stop iOS zoom */
+  :focus-visible { outline: 3px solid rgb(var(--sc-plum) / 0.45); outline-offset: 2px; border-radius: 10px; }
+  ::selection { background: rgb(var(--sc-peach)); color: rgb(var(--sc-cocoa)); }
+  .tabular { font-variant-numeric: tabular-nums; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; }
+  }
+}
+
+@layer utilities {
+  .scrollbar-none { scrollbar-width: none; }
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+  .pb-safe { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+  /* scalloped "doily" edge used on receipts/tickets */
+  .edge-scallop {
+    -webkit-mask: radial-gradient(10px at 50% 10px, #0000 98%, #000) 50% -10px / 20px 100%;
+            mask: radial-gradient(10px at 50% 10px, #0000 98%, #000) 50% -10px / 20px 100%;
+  }
+  /* soft sprinkle backdrop for hero areas */
+  .bg-sprinkles {
+    background-image:
+      radial-gradient(circle at 12% 20%, rgb(var(--sc-peach) / .55) 0 3px, transparent 4px),
+      radial-gradient(circle at 78% 30%, rgb(var(--sc-cherry) / .35) 0 3px, transparent 4px),
+      radial-gradient(circle at 40% 80%, rgb(var(--sc-plum-200) / .7) 0 3px, transparent 4px),
+      radial-gradient(circle at 90% 85%, rgb(var(--sc-peach) / .55) 0 2px, transparent 3px);
+    background-size: 160px 160px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Sugar City Studio — admin-only component styles (tokens above are shared).
+   --------------------------------------------------------------------------- */
+@layer components {
+  /* Form controls */
+  .sc-input {
+    @apply block min-h-11 w-full rounded-md border border-crumb-strong bg-card px-3.5 py-2 text-cocoa placeholder:text-cocoa-faint
+      transition-[border-color,box-shadow] duration-150 hover:border-plum-200 focus:border-plum focus:shadow-ring focus:outline-none
+      disabled:cursor-not-allowed disabled:bg-cream-deep disabled:text-cocoa-faint;
+  }
+  .sc-input[aria-invalid='true'] { @apply border-berry focus:shadow-[0_0_0_4px_rgb(200_30_58/0.12)]; }
+  .sc-select {
+    @apply sc-input appearance-none bg-no-repeat pr-10;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%235E0E4E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-position: right 0.75rem center;
+  }
+  .sc-label { @apply mb-1.5 block text-sm font-semibold text-cocoa; }
+  .sc-card { @apply rounded-xl border border-crumb bg-card shadow-soft; }
+  .sc-eyebrow { @apply text-xs font-semibold uppercase tracking-[0.14em] text-cocoa-faint; }
+  .sc-link { @apply font-semibold text-plum underline-offset-4 hover:underline; }
+}
+
+/* Receipt paper for the counter ticket: faint ruled lines. */
+.ticket-paper {
+  background-color: rgb(var(--sc-card));
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0 31px,
+    rgb(var(--sc-crumb) / 0.55) 31px 32px
+  );
+}
+
+/* Drop target highlight on the order board. */
+.board-drop {
+  outline: 2px dashed rgb(var(--sc-plum) / 0.45);
+  outline-offset: -6px;
+  background-color: rgb(var(--sc-plum-50));
+}
+
+/* Toasts sit above dialogs; clicks on them must not count as "outside". */
+.app-toaster { z-index: 9999 !important; }

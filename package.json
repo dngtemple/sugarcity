@@ -1,0 +1,13 @@
+{
+  "name": "sugarcity",
+  "private": true,
+  "description": "Sugar City — cakes, pastries & gift boxes: customer site, staff studio and API",
+  "scripts": {
+    "install:all": "npm --prefix server install && npm --prefix client install && npm --prefix admin install",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "dev:admin": "npm --prefix admin run dev",
+    "seed": "npm --prefix server run seed",
+    "build": "npm --prefix server run build && npm --prefix client run build && npm --prefix admin run build"
+  }
+}

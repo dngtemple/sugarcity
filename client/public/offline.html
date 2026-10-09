@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en-GH">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#5E0E4E" />
+    <title>Offline · Sugar City</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background-color: #fcf7f1;
+        background-image:
+          radial-gradient(circle at 12% 20%, rgb(247 203 168 / .55) 0 3px, transparent 4px),
+          radial-gradient(circle at 78% 30%, rgb(214 47 69 / .35) 0 3px, transparent 4px),
+          radial-gradient(circle at 40% 80%, rgb(222 188 212 / .7) 0 3px, transparent 4px);
+        background-size: 160px 160px;
+        color: #2b0e25;
+        font-family: Outfit, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+        text-align: center;
+      }
+      main {
+        max-width: 360px;
+        width: 100%;
+        background: #fff;
+        border-radius: 28px;
+        padding: 36px 28px;
+        box-shadow: 0 24px 60px -18px rgb(94 14 78 / .35), 0 4px 12px rgb(94 14 78 / .08);
+      }
+      .badge {
+        width: 96px;
+        height: 96px;
+        margin: 0 auto 20px;
+        border-radius: 999px;
+        background: #fef4ec;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .badge img { width: 72px; height: 72px; }
+      h1 { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 28px; color: #5e0e4e; margin: 0 0 8px; }
+      p { margin: 0 0 24px; color: #684c60; line-height: 1.5; }
+      button {
+        height: 52px;
+        padding: 0 28px;
+        border: 0;
+        border-radius: 999px;
+        background: #5e0e4e;
+        color: #fcf7f1;
+        font: inherit;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      button:hover { background: #4a093d; }
+      button:focus-visible { outline: 3px solid rgb(94 14 78 / .45); outline-offset: 3px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="badge"><img src="/brand/sugarcity-logo.png" alt="Sugar City" width="72" height="72" /></div>
+      <h1>You’re offline</h1>
+      <p>Your connection took a little break. Reconnect and the treats will be right here.</p>
+      <button type="button" onclick="location.reload()">Try again</button>
+    </main>
+  </body>
+</html>
