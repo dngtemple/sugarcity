@@ -5,7 +5,9 @@ services:
     runtime: node
     rootDir: server
     plan: free
-    buildCommand: npm install && npm run build
+    # --include=dev: NODE_ENV=production would otherwise skip the @types/* and
+    # typescript packages that the build needs.
+    buildCommand: npm install --include=dev && npm run build
     startCommand: npm start
     healthCheckPath: /api/health
     autoDeploy: true

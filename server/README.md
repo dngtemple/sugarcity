@@ -70,7 +70,7 @@ or set up the service by hand:
 1. **New, then Web Service**, and connect the repo.
 2. **Root directory:** `server`
 3. **Runtime:** Node
-4. **Build command:** `npm install && npm run build`
+4. **Build command:** `npm install --include=dev && npm run build` (with `NODE_ENV=production`, a plain `npm install` skips the type packages the build needs)
 5. **Start command:** `npm start`
 6. **Health check path:** `/api/health`
 7. **Environment:** set `NODE_ENV=production`, plus everything marked required in
